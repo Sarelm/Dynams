@@ -1,6 +1,7 @@
 package com.sarelm.dynams;
 
 
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
@@ -14,7 +15,6 @@ import net.minecraftforge.fml.relauncher.Side;
 
 
 import org.apache.logging.log4j.Logger;
-
 import com.sarelm.dynams.items.ItemKithBerry;
 
 @Mod(modid = Dynams.MODID, name = Dynams.NAME, version = Dynams.VERSION)
@@ -31,6 +31,7 @@ public class Dynams
     public static CommonProxy proxy;
     public static Dynams Instance;
     private static Logger logger;
+	public DynamCreativeTab tabMod;
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event)
@@ -78,6 +79,8 @@ public class Dynams
         @Override
         public void preInit(FMLPreInitializationEvent event) {
             super.preInit(event);
+            tabMod = new DynamCreativeTab(CreativeTabs.getNextID());
+            proxy.preInit(event);
         }
 
         @SubscribeEvent
